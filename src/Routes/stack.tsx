@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Login } from "../pages/Login/Email";
+import { Senha } from "../pages/Login/Senha";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -12,6 +13,7 @@ export const StackRoutes: React.FC = () => {
       }}
     >
       <Screen name="Login" component={Login} />
+      <Screen name="Senha" component={Senha} />
     </Navigator>
   );
 };

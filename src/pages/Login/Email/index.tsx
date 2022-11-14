@@ -1,4 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import {
   Container,
@@ -21,6 +23,18 @@ import {
 } from "./styles";
 
 export const Login: React.FC = () => {
+  const { handleSubmit, setValue } = useForm();
+  const navigation = useNavigation<any>();
+
+  const handleSubmitForm = (data:any) => {
+    console.log(data);
+    screenSenha();
+  };
+
+  const screenSenha = () => {
+    navigation.navigate("Senha");
+  };
+
   return (
     <Container>
       <ScrollView>
@@ -33,9 +47,13 @@ export const Login: React.FC = () => {
           </TitleContainer>
           <InputContainer>
             <Placeholder>Telefone, e-mail ou usuário</Placeholder>
-            <Input keyboardType="email-address" autoCapitalize="none" />
+            <Input
+              keyboardType="email-address"
+              autoCapitalize="none"
+              onChangeText={(text: String) => setValue("login", text)}
+            />
           </InputContainer>
-          <Continue>
+          <Continue onPress={handleSubmit(handleSubmitForm)}>
             <ContinueText>Continuar</ContinueText>
           </Continue>
           <Recover>
@@ -45,10 +63,12 @@ export const Login: React.FC = () => {
             <Texto>Preciso de ajuda para entrar</Texto>
           </Recover>
           <ReportContainer>
-            <ReportTitle>Reportar um problema</ReportTitle>
-            <ReportDescription>
-              I Roubo ou perda do Telefone {">"}{" "}
-            </ReportDescription>
+            <TouchableOpacity>
+              <ReportTitle>Reportar um problema</ReportTitle>
+              <ReportDescription>
+                I Roubo ou perda do Telefone {"              >"}
+              </ReportDescription>
+            </TouchableOpacity>
           </ReportContainer>
         </Content>
       </ScrollView>
