@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Feather";
 import {
   Container,
   Content,
@@ -22,12 +23,20 @@ import {
   TitleContainer
 } from "./styles";
 
-export const Login: React.FC = () => {
-  const { handleSubmit, setValue } = useForm();
-  const navigation = useNavigation<any>();
+type User = {
+  login: number;
+};
 
-  const handleSubmitForm = (data:any) => {
-    console.log(data);
+export const Login: React.FC = () => {
+  const navigation = useNavigation<any>();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<User>();
+
+  const handleSubmitForm = (data: User) => {
+    console.log(data.login);
     screenSenha();
   };
 
@@ -41,17 +50,35 @@ export const Login: React.FC = () => {
         <Content>
           <TitleContainer>
             <TouchableOpacity>
-              <Text>Ícone de voltar</Text>
+              <Icon name="arrow-left" color="black" size={24} />
             </TouchableOpacity>
             <Title>Insira seu telefone, e-mail ou usuário</Title>
           </TitleContainer>
           <InputContainer>
             <Placeholder>Telefone, e-mail ou usuário</Placeholder>
-            <Input
-              keyboardType="email-address"
-              autoCapitalize="none"
-              onChangeText={(text: String) => setValue("login", text)}
+            <Controller
+              control={control}
+              name="login"
+              rules={{
+                required: "login não pode ser nulo!!",
+              }}
+              render={({ field: { value, onChange } }) => (
+                <Input
+                  value={value || ""}
+                  onChangeText={onChange}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  style={{
+                    border: `1px solid ${
+                      errors?.login?.message ? "red" : " #c4c4c4"
+                    }`,
+                  }}
+                />
+              )}
             />
+            {errors?.login && (
+              <Text style={{ color: "red" }}>{errors.login.message}</Text>
+            )}
           </InputContainer>
           <Continue onPress={handleSubmit(handleSubmitForm)}>
             <ContinueText>Continuar</ContinueText>
@@ -66,7 +93,9 @@ export const Login: React.FC = () => {
             <TouchableOpacity>
               <ReportTitle>Reportar um problema</ReportTitle>
               <ReportDescription>
-                I Roubo ou perda do Telefone {"              >"}
+                <Icon name="smartphone" color="black" size={24} />
+                {"  "}Roubo ou perda do Telefone{"    "}
+                <Icon name="chevron-right" color="black" size={24} />
               </ReportDescription>
             </TouchableOpacity>
           </ReportContainer>
