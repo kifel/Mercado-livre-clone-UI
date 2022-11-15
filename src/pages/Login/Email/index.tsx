@@ -36,18 +36,22 @@ export const Login: React.FC = () => {
     handleSubmit,
     control,
     reset,
+    formState,
     formState: { errors },
   } = useForm<User>({
     defaultValues: {
       login: "",
-    }
+    },
   });
 
+  React.useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ login: "" });
+    }
+  }, [formState, reset]);
+
   const handleSubmitForm = (data: User) => {
-    console.log(data.login);
-    reset({
-      login: "",
-    });
+    console.log(data);
     screenSenha();
   };
 
