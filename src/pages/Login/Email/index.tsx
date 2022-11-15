@@ -1,10 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
-import { StackParams } from "../../../Routes/stack";
+import { UserContext } from "../../../context/User";
+import { StackParams, User } from "../../../types/GlobalTypes";
 import {
   Container,
   Content,
@@ -25,12 +26,9 @@ import {
   TitleContainer
 } from "./styles";
 
-type User = {
-  login: String;
-};
-
 export const Login: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
+  const { LoginPass } = useContext<any>(UserContext);
 
   const {
     handleSubmit,
@@ -51,7 +49,7 @@ export const Login: React.FC = () => {
   }, [formState, reset]);
 
   const handleSubmitForm = (data: User) => {
-    console.log(data);
+    LoginPass(data.login);
     screenSenha();
   };
 

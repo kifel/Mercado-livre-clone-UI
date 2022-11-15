@@ -2,11 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Login } from "../pages/Login/Email";
 import { Senha } from "../pages/Login/Senha";
-
-export type StackParams = {
-  Login: undefined,
-  Senha: undefined,
-};
+import { StackParams } from "../types/GlobalTypes";
 
 const { Screen, Navigator } = createNativeStackNavigator<StackParams>();
 
