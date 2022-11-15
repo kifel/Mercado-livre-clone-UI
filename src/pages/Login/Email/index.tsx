@@ -26,20 +26,28 @@ import {
 } from "./styles";
 
 type User = {
-  login: number;
+  login: String;
 };
 
 export const Login: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
-  
+
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<User>({
+    defaultValues: {
+      login: "",
+    }
+  });
 
   const handleSubmitForm = (data: User) => {
     console.log(data.login);
+    reset({
+      login: "",
+    });
     screenSenha();
   };
 
