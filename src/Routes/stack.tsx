@@ -3,7 +3,12 @@ import React from "react";
 import { Login } from "../pages/Login/Email";
 import { Senha } from "../pages/Login/Senha";
 
-const { Screen, Navigator } = createNativeStackNavigator();
+export type StackParams = {
+  Login: String;
+  Senha: String;
+};
+
+const { Screen, Navigator } = createNativeStackNavigator<StackParams>();
 
 export const StackRoutes: React.FC = () => {
   return (

@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
+import { StackParams } from "../../../Routes/stack";
 import {
   Container,
   Content,
@@ -28,7 +30,8 @@ type User = {
 };
 
 export const Login: React.FC = () => {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
+  
   const {
     handleSubmit,
     control,
