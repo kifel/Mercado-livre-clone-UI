@@ -4,8 +4,8 @@ import { Login } from "../pages/Login/Email";
 import { Senha } from "../pages/Login/Senha";
 
 export type StackParams = {
-  Login: String;
-  Senha: String;
+  Login: undefined,
+  Senha: undefined,
 };
 
 const { Screen, Navigator } = createNativeStackNavigator<StackParams>();
