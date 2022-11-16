@@ -28,7 +28,8 @@ import {
 export const Senha: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const [passwordVisibility, setPasswordVisibility] = React.useState(true);
-  const [iconPassword, setIconPassword] = React.useState("EXIBIR");
+  const [color, setColor] = React.useState<String>("#c4c4c4");
+  const [iconPassword, setIconPassword] = React.useState<String>("     EXIBIR");
   const { user, LoginPass } = useContext<any>(UserContext);
 
   const {
@@ -46,6 +47,8 @@ export const Senha: React.FC = () => {
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset({ login: "" });
+    } else {
+      borderColor();
     }
   }, [formState, reset]);
 
@@ -59,11 +62,11 @@ export const Senha: React.FC = () => {
   };
 
   const handlePasswordVisibility = () => {
-    if (iconPassword === "EXIBIR") {
+    if (iconPassword === "     EXIBIR") {
       setIconPassword("OCULTAR");
       setPasswordVisibility(!passwordVisibility);
     } else if (iconPassword === "OCULTAR") {
-      setIconPassword("EXIBIR");
+      setIconPassword("     EXIBIR");
       setPasswordVisibility(!passwordVisibility);
     }
   };
@@ -71,7 +74,15 @@ export const Senha: React.FC = () => {
   const changeAccount = () => {
     LoginPass("");
     screenLogin();
-  }
+  };
+
+  const borderColor = () => {
+    if (errors?.senha?.message) {
+      setColor("red");
+    } else {
+      setColor("#c4c4c4");
+    }
+  };
 
   return (
     <Container>
@@ -87,9 +98,8 @@ export const Senha: React.FC = () => {
             <Placeholder>Senha</Placeholder>
             <InputContainerButton
               style={{
-                border: `1px solid ${
-                  errors?.senha?.message ? "red" : " #c4c4c4"
-                }`,
+                borderWidth: 1,
+                borderColor: `${color}`,
               }}
             >
               <Controller
@@ -103,12 +113,12 @@ export const Senha: React.FC = () => {
                     <Input
                       value={value || ""}
                       onChangeText={onChange}
-                      keyboardType="email-address"
+                      keyboardType="default"
                       autoCapitalize="none"
                       secureTextEntry={passwordVisibility}
                     />
                     <TouchableOpacity onPress={handlePasswordVisibility}>
-                      <Texto styles={{marginRight:'25px'}}>{iconPassword}</Texto>
+                      <Texto>{iconPassword}</Texto>
                     </TouchableOpacity>
                   </>
                 )}
@@ -132,7 +142,7 @@ export const Senha: React.FC = () => {
               <ReportTitle>Reportar um problema</ReportTitle>
               <ReportDescription>
                 <Icon name="smartphone" color="black" size={24} />
-                {"  "}Roubo ou perda do Telefone{"    "}
+                {"  "}Roubo ou perda do Telefone{"   "}
                 <Icon name="chevron-right" color="black" size={24} />
               </ReportDescription>
             </TouchableOpacity>

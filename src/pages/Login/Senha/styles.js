@@ -22,7 +22,7 @@ export const ReportContainer = styled.View`
 
 export const InputContainerButton = styled.View`
   width: 100%;
-  border-radius: 8;
+  border-radius: 8px;
   flex-direction: row;
   align-items: center;
 `;
@@ -58,7 +58,7 @@ export const InputContainer = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  width: 80%;
+  width: 70%;
   padding: 8px;
   border-radius: 8px;
 `;

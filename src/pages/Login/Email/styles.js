@@ -22,7 +22,7 @@ export const ReportContainer = styled.View`
 
 export const CopyrightContainer = styled.View`
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   border-top-width: 1px;
   border-top-color: #c4c4c4;

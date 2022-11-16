@@ -28,6 +28,7 @@ import {
 
 export const Login: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
+  const [color, setColor] = React.useState<String>("#c4c4c4");
   const { LoginPass } = useContext<any>(UserContext);
 
   const {
@@ -45,6 +46,8 @@ export const Login: React.FC = () => {
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset({ login: "" });
+    } else {
+      borderColor();
     }
   }, [formState, reset]);
 
@@ -55,6 +58,14 @@ export const Login: React.FC = () => {
 
   const screenSenha = () => {
     navigation.navigate("Senha");
+  };
+
+  const borderColor = () => {
+    if (errors?.login?.message) {
+      setColor("red");
+    } else {
+      setColor("#c4c4c4");
+    }
   };
 
   return (
@@ -82,9 +93,8 @@ export const Login: React.FC = () => {
                   keyboardType="email-address"
                   autoCapitalize="none"
                   style={{
-                    border: `1px solid ${
-                      errors?.login?.message ? "red" : " #c4c4c4"
-                    }`,
+                    borderWidth: 1,
+                    borderColor: `${color}`,
                   }}
                 />
               )}
@@ -107,7 +117,7 @@ export const Login: React.FC = () => {
               <ReportTitle>Reportar um problema</ReportTitle>
               <ReportDescription>
                 <Icon name="smartphone" color="black" size={24} />
-                {"  "}Roubo ou perda do Telefone{"    "}
+                {"  "}Roubo ou perda do Telefone{"  "}
                 <Icon name="chevron-right" color="black" size={24} />
               </ReportDescription>
             </TouchableOpacity>
