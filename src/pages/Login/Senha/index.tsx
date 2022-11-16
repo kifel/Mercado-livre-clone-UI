@@ -40,13 +40,13 @@ export const Senha: React.FC = () => {
     formState: { errors },
   } = useForm<User>({
     defaultValues: {
-      login: "",
+      senha: "",
     },
   });
 
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      reset({ login: "" });
+      reset({ senha: "" });
     } else {
       borderColor();
     }
