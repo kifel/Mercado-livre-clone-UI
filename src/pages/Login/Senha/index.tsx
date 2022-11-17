@@ -27,7 +27,8 @@ import {
 
 export const Senha: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
-  const [passwordVisibility, setPasswordVisibility] = React.useState<Boolean>(true);
+  const [passwordVisibility, setPasswordVisibility] =
+    React.useState<Boolean>(true);
   const [color, setColor] = React.useState<String>("#c4c4c4");
   const [iconPassword, setIconPassword] = React.useState<String>("     EXIBIR");
   const { user, LoginPass } = useContext<any>(UserContext);
@@ -55,10 +56,15 @@ export const Senha: React.FC = () => {
   const handleSubmitForm = (data: User) => {
     data.login = user;
     console.log(data);
+    screenProducts();
   };
 
   const screenLogin = () => {
     navigation.navigate("Login");
+  };
+
+  const screenProducts = () => {
+    navigation.navigate("Products");
   };
 
   const handlePasswordVisibility = () => {

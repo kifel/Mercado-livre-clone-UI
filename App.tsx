@@ -7,7 +7,7 @@ export default function App() {
   return (
     <UserProvider>
       <RoutesConfig />
-      <StatusBar backgroundColor="#ffee00" barStyle="dark-content" />
+      <StatusBar backgroundColor="#FFDA18" barStyle="dark-content" />
     </UserProvider>
   );
 }

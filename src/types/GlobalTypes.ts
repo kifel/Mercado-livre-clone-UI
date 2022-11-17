@@ -4,7 +4,7 @@ export type User = {
 };
 
 export type StackParams = {
-  Login: undefined,
-  Senha: undefined,
+  Login: undefined;
+  Senha: undefined;
+  Products: undefined;
 };
-
