@@ -1,42 +1,29 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text_results: {
-    marginTop: 20,
-    marginHorizontal: 10,
-  },
-  container_item: {
-    flexDirection: "row",
-  },
-  picture: {
-    width: 80,
-    height: 80,
-    marginRight: 30,
-  },
-  item: {
-    padding: 20,
-    marginVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: "#CDCDCD",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  item_title: {
-    fontSize: 16,
-  },
-  item_price: {
-    fontSize: 16,
-  },
-  item_subdivision: {
-    fontSize: 10,
-  },
-  item_subdivision_detach: {
-    fontSize: 12,
-    color: "#00a650",
-  },
-});
+export const Container = styled.View`
+  flex: 1;
+  background-color: #ffff;
+`;
 
-export default styles;
+export const FilterContainer = styled.View`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom-width: 1px;
+  border-bottom-color: #c4c4c4;
+`;
+
+export const FilterResults = styled.Text`
+  color: gray;
+  font-size: 16px;
+`;
+
+export const Filter = styled.Text`
+  color: #3483fa;
+  font-size: 16px;
+`;
