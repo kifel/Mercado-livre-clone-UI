@@ -31,7 +31,7 @@ export const Senha: React.FC = () => {
     React.useState<Boolean>(true);
   const [color, setColor] = React.useState<String>("#c4c4c4");
   const [iconPassword, setIconPassword] = React.useState<String>("     EXIBIR");
-  const { user, LoginPass } = useContext<any>(UserContext);
+  const { user, LoginPass } = useContext(UserContext);
 
   const {
     handleSubmit,

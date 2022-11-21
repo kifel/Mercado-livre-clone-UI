@@ -1,12 +1,23 @@
 import React, { createContext, useState } from "react";
-import { User } from "../types/GlobalTypes";
 
-export const UserContext = createContext({});
+type ContextTypes = {
+  user: String;
+  setUser: (newState: String) => void;
+  LoginPass: (newState: String) => void;
+};
+
+const initialValues = {
+  user: "",
+  setUser: () => {},
+  LoginPass: () => {},
+};
+
+export const UserContext = createContext<ContextTypes>(initialValues);
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<String>(initialValues.user);
 
-  function LoginPass(user: User) {
+  function LoginPass(user: string) {
     setUser(user);
   }
 
@@ -14,6 +25,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
+        setUser,
         LoginPass,
       }}
     >

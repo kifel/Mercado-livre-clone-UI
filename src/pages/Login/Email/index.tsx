@@ -29,7 +29,7 @@ import {
 export const Login: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const [color, setColor] = React.useState<String>("#c4c4c4");
-  const { LoginPass } = useContext<any>(UserContext);
+  const { LoginPass } = useContext(UserContext);
 
   const {
     handleSubmit,
