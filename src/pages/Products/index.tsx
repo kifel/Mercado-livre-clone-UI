@@ -5,7 +5,6 @@ import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
 import { Container, Filter, FilterContainer, FilterResults } from "./styles";
 
-// import { Container } from './styles';
 
 const Products: React.FC = () => {
   return (
